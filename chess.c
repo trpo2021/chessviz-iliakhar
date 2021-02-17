@@ -6,7 +6,7 @@ int main(int argc, char* argv[])
 {
     FILE* fp;
     // printf("$ %s $",argv[1]);
-    if ((fp = fopen(argv[1], "r")) == NULL) {
+    if ((fp = fopen("table.txt", "r")) == NULL) {
         printf("Cannot open file.\n");
         exit(1);
     }
@@ -16,4 +16,5 @@ int main(int argc, char* argv[])
         // fgets(a,20,fp);
         printf("%s", a);
     }
+    fclose(fp);
 }
