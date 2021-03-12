@@ -4,17 +4,22 @@
 
 int main(int argc, char* argv[])
 {
-    FILE* fp;
-    // printf("$ %s $",argv[1]);
-    if ((fp = fopen("table.txt", "r")) == NULL) {
-        printf("Cannot open file.\n");
-        exit(1);
-    }
+    int i, j;
+    char table[8][8]
+            = {{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
+               {'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
+               {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+               {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+               {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+               {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+               {'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
+               {'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}};
 
-    char a[20];
-    while (fgets(a, 20, fp)) {
-        // fgets(a,20,fp);
-        printf("%s", a);
+    for (i = 0; i < 8; i++) {
+        printf("%d ", i + 1);
+        for (j = 0; j < 8; j++)
+            printf("%c ", table[i][j]);
+        printf("\n");
     }
-    fclose(fp);
+    printf("  a b c d e f g h\n");
 }
