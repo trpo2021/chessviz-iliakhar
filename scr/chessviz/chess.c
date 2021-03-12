@@ -1,4 +1,4 @@
-#include "Output.h"
+#include "../libchessviz/Output.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
