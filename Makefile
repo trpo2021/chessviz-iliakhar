@@ -9,8 +9,8 @@ CHESSVIZ_SCR = scr/chessviz
 LIBCHESSVIZ_OBJ = obj/scr/libchessviz
 LIBCHESSVIZ_SCR = scr/libchessviz
 
-run:$(CHESSVIZ_BIN)/chessviz
-	./$<
+all:$(CHESSVIZ_BIN)/chessviz
+	./$< scr/chessviz/moves.txt
 
 $(CHESSVIZ_BIN)/chessviz:$(CHESSVIZ_OBJ)/chess.o $(LIBCHESSVIZ_OBJ)/libchessviz.a
 	$(CC) $(CFLAGS) $^ -o $@
