@@ -1,5 +1,5 @@
-#include "../libchessviz/Output.h"
-#include "../libchessviz/ProverkaFormata.h"
+#include <libchessviz/Output.h>
+#include <libchessviz/ProverkaFormata.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

@@ -1,4 +1,4 @@
-CFLAGS = -Wall -Werror
+CFLAGS = -I scr -Wall -Werror
 CC = gcc
 
 CHESSVIZ_BIN = bin
