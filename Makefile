@@ -24,7 +24,7 @@ $(LIBCHESSVIZ_OBJ)/%.o : $(LIBCHESSVIZ_SCR)/%.c
 
 $(LIBCHESSVIZ_OBJ)/libchessviz.a : $(patsubst $(LIBCHESSVIZ_SCR)/%c, $(LIBCHESSVIZ_OBJ)/%o, $(wildcard $(LIBCHESSVIZ_SCR)/*c))
 	ar rcs $@ $^
-
+.PHONY: clean
 clean:
 	rm -rf $(CHESSVIZ_OBJ)/*.o
 	rm -rf $(LIBCHESSVIZ_OBJ)/*.o
