@@ -48,6 +48,16 @@ int proverka_formata_figura(
     return 1;
 }
 
+int prov_act(char m[])
+{
+    if (strchr(m, '-'))
+        return (strchr(m, '-') - m);
+    else if (strchr(m, 'x'))
+        return (strchr(m, 'x') - m);
+    else
+        return (-1);
+}
+
 int proverka_formata_hod(char m[8], int player)
 {
     //функция проверяет есть ли в m '-' или 'x', и если есть делит строку на
@@ -57,12 +67,8 @@ int proverka_formata_hod(char m[8], int player)
 
     int act, i;
     char mv[3], m1[8] = "\0";
-
-    if (strchr(m, '-'))
-        act = strchr(m, '-') - m;
-    else if (strchr(m, 'x'))
-        act = strchr(m, 'x') - m;
-    else
+    act = prov_act(m);
+    if (act == -1)
         return 0;
 
     for (i = 0; i < act; i++)
