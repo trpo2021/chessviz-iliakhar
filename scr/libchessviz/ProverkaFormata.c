@@ -1,4 +1,4 @@
-#include "ProverkaFormata.h"
+#include <libchessviz/ProverkaFormata.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -11,9 +11,9 @@ int proverka_formata_figura(
     char fig[7];
     int i, bl = 0;
     if (player == 1)
-        strcpy(fig, "prnbqk");
-    else
         strcpy(fig, "PRNBQK");
+    else
+        strcpy(fig, "prnbqk");
     if (n == 2) {
         //если phase=1 и длина строки положения равна 2, то
         //на первое место в m1 ставится p/P и проверяется формат
@@ -22,7 +22,7 @@ int proverka_formata_figura(
             m1[strlen(m1)] = fig[0];
         if (mv[0] < 'a' || mv[0] > 'h')
             return 0;
-        if (mv[1] < '1' || mv[1] > '9')
+        if (mv[1] < '1' || mv[1] > '8')
             return 0;
         strcat(m1, mv);
 
@@ -37,7 +37,7 @@ int proverka_formata_figura(
             return 0;
         if (mv[1] < 'a' || mv[1] > 'h')
             return 0;
-        if (mv[2] < '1' || mv[2] > '9')
+        if (mv[2] < '1' || mv[2] > '8')
             return 0;
         strcat(m1, mv);
 
@@ -46,6 +46,16 @@ int proverka_formata_figura(
     else
         return 0;
     return 1;
+}
+
+int prov_act(char m[])
+{
+    if (strchr(m, '-'))
+        return (strchr(m, '-') - m);
+    else if (strchr(m, 'x'))
+        return (strchr(m, 'x') - m);
+    else
+        return (-1);
 }
 
 int proverka_formata_hod(char m[8], int player)
@@ -57,12 +67,8 @@ int proverka_formata_hod(char m[8], int player)
 
     int act, i;
     char mv[3], m1[8] = "\0";
-
-    if (strchr(m, '-'))
-        act = strchr(m, '-') - m;
-    else if (strchr(m, 'x'))
-        act = strchr(m, 'x') - m;
-    else
+    act = prov_act(m);
+    if (act == -1)
         return 0;
 
     for (i = 0; i < act; i++)

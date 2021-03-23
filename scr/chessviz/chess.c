@@ -1,11 +1,13 @@
-#include "../libchessviz/Output.h"
-#include "../libchessviz/ProverkaFormata.h"
+#include <libchessviz/Output.h>
+#include <libchessviz/Move.h>
+#include <libchessviz/ProverkaFormata.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 int main(int argc, char* argv[])
 {
+int i=1;
     if (argc != 2) {
         printf("Неверное колличество аргументов командной строки\n");
         return 1;
@@ -24,19 +26,22 @@ int main(int argc, char* argv[])
     if ((fmove = fopen(argv[1], "r")) == NULL) {
         printf("Cannot open file.\n");
         exit(1);
-    }
-    while (fgets(s, 20, fmove)) {
-        printf("\n%s\n", s);
-        //вывод доски
+    } 
+    //вывод доски
+        printf("\n");
         Output(table);
+        
+    while (fgets(s, 20, fmove)) {
+       
         //проверка входных данных + добавление
         //в сторку s p/P если ходит пешка
         if (proverka_formata(table, s) == 0) {
-            printf("Неверный формат входных данных\n");
+            printf("\nНеверный формат входных данных ( %s )\n",s);
             return 0;
         }
-        printf("\nПроверка входных данных прошла успешно\n");
-        // TO_DO: реализовать движение фигур
+        //printf("\nПроверка входных данных прошла успешно\n");
+        Move(s,table,i);
+        i++;
     }
 
     fclose(fmove);
