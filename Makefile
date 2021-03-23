@@ -1,4 +1,5 @@
 CFLAGS = -I scr -Wall -Werror
+CPPFLAGS = -MMD
 CC = gcc
 
 CHESSVIZ_BIN = bin
@@ -9,6 +10,7 @@ CHESSVIZ_SCR = scr/chessviz
 LIBCHESSVIZ_OBJ = obj/scr/libchessviz
 LIBCHESSVIZ_SCR = scr/libchessviz
 
+
 all:$(CHESSVIZ_BIN)/chessviz
 	./$< scr/chessviz/moves.txt
 
@@ -16,17 +18,21 @@ $(CHESSVIZ_BIN)/chessviz:$(CHESSVIZ_OBJ)/chess.o $(LIBCHESSVIZ_OBJ)/libchessviz.
 	$(CC) $(CFLAGS) $^ -o $@
 
 $(CHESSVIZ_OBJ)/chess.o : $(CHESSVIZ_SCR)/chess.c
-	$(CC) -c $(CFLAGS) $< -o $@
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
 
 $(LIBCHESSVIZ_OBJ)/%.o : $(LIBCHESSVIZ_SCR)/%.c
-	$(CC) -c $(CFLAGS) $< -o $@
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
 
 
 $(LIBCHESSVIZ_OBJ)/libchessviz.a : $(patsubst $(LIBCHESSVIZ_SCR)/%c, $(LIBCHESSVIZ_OBJ)/%o, $(wildcard $(LIBCHESSVIZ_SCR)/*c))
 	ar rcs $@ $^
+	
 .PHONY: clean
 clean:
 	rm -rf $(CHESSVIZ_OBJ)/*.o
+	rm -rf $(CHESSVIZ_OBJ)/*.d
 	rm -rf $(LIBCHESSVIZ_OBJ)/*.o
+	rm -rf $(LIBCHESSVIZ_OBJ)/*.d
 	rm -rf $(LIBCHESSVIZ_OBJ)/*.a
 	rm -rf $(CHESSVIZ_BIN)/chessviz
+-include $(patsubst $(LIBCHESSVIZ_SCR)/%.c, $(LIBCHESSVIZ_OBJ)/%.d, $(wildcard $(LIBCHESSVIZ_SCR)/*.c))
