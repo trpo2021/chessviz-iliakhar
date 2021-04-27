@@ -1,5 +1,5 @@
 CFLAGS = -I scr -Wall -Werror
-CFLAGS_TEST = -I thirdparty -Wall -Werror
+CFLAGS_TEST = -I thirdparty -I scr -I test -Wall -Werror
 CPPFLAGS = -MMD
 CC = gcc
 
@@ -14,6 +14,8 @@ CHESSVIZ_SCR = scr/chessviz
 
 LIBCHESSVIZ_OBJ = obj/scr/libchessviz
 LIBCHESSVIZ_SCR = scr/libchessviz
+LIBCHESSVIZ_OBJ_FILE = $(patsubst $(LIBCHESSVIZ_SCR)/%.c, $(LIBCHESSVIZ_OBJ)/%.o, $(wildcard $(LIBCHESSVIZ_SCR)/*.c))
+TEST_OBJ_FILE = $(patsubst $(TEST)/%.c, $(TEST_OBJ)/%.o, $(wildcard $(TEST)/*.c))
 
 .PHONY: all
 all:$(CHESSVIZ_BIN)/chessviz
@@ -29,7 +31,7 @@ $(LIBCHESSVIZ_OBJ)/%.o : $(LIBCHESSVIZ_SCR)/%.c
 	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
 
 
-$(LIBCHESSVIZ_OBJ)/libchessviz.a : $(patsubst $(LIBCHESSVIZ_SCR)/%.c, $(LIBCHESSVIZ_OBJ)/%.o, $(wildcard $(LIBCHESSVIZ_SCR)/*.c))
+$(LIBCHESSVIZ_OBJ)/libchessviz.a : $(LIBCHESSVIZ_OBJ_FILE)
 	ar rcs $@ $^
 	
 .PHONY: format
@@ -37,8 +39,12 @@ format:
 	#echo $(wildcard $(LIBCHESSVIZ_SCR)/*.c)
 	clang-format -style=file -i $(wildcard $(LIBCHESSVIZ_SCR)/*.c) $(wildcard $(CHESSVIZ_SCR)/*.c) $(wildcard $(TEST)/*.c)
 #####################################____TEST___#####################################
+.PHONY: testrun
+testrun: test
+	./bin/chessviz_test
+
 .PHONY: test
-test:$(TEST_OBJ)/main.o
+test:$(TEST_OBJ_FILE) $(LIBCHESSVIZ_OBJ_FILE)
 	$(CC) $(CFLAGS_TEST) $^ -o $(CHESSVIZ_BIN)/chessviz_test
 
 (TEST_OBJ)/main.o : $(TEST)/main.c

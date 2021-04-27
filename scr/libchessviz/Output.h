@@ -1,3 +1,3 @@
 #pragma once
 
-void Output(char table[8][8]);
+void Output(char table[8][9]);

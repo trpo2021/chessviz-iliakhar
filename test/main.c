@@ -1,8 +1,8 @@
-#include <ctest.h>
-#include <stdio.h>
+#define CTEST_MAIN
 
-int main(int argc, char* argv[])
+#include <ctest.h>
+
+int main(int argc, const char** argv)
 {
-    printf("AAAAAAAAAAAA");
-    return 0;
+    return ctest_main(argc, argv);
 }

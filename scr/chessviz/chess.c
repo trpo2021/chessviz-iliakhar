@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
         return 1;
     }
     FILE* fmove;
-    char table[8][8]
+    char table[8][9]
             = {{'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
                {'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
                {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
@@ -23,6 +23,7 @@ int main(int argc, char* argv[])
                {'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
                {'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'}};
     char s[20];
+    // printf("%s",table[0]);
     if ((fmove = fopen(argv[1], "r")) == NULL) {
         printf("Cannot open file.\n");
         exit(1);
