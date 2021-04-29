@@ -35,7 +35,30 @@ int Move(char s[], char table[8][9], int k)
         case 'K':
             if (move_king(fig, strcpy(s2, s2 + 1), table) == 0)
                 return 0;
-
+            break;
+        case 'p':
+        case 'P':
+            if (move_pawn(fig, strcpy(s2, s2 + 1), table) == 0)
+                return 0;
+            break;
+        case 'r':
+        case 'R':
+            if (move_rook(fig, strcpy(s2, s2 + 1), table) == 0)
+                return 0;
+            break;
+        case 'b':
+        case 'B':
+            if (move_bishop(fig, strcpy(s2, s2 + 1), table) == 0)
+                return 0;
+            break;
+        case 'q':
+        case 'Q':
+            if (move_queen(fig, strcpy(s2, s2 + 1), table) == 0)
+                return 0;
+        case 'n':
+        case 'N':
+            if (move_knight(fig, strcpy(s2, s2 + 1), table) == 0)
+                return 0;
             break;
         default:
             break;

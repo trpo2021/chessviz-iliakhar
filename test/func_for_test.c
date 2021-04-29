@@ -1,6 +1,6 @@
+#include <ctest.h>
 #include <stdio.h>
 #include <string.h>
-#include <ctest.h>
 
 void Output_Log(char table[8][9])
 {
