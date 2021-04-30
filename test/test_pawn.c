@@ -4,130 +4,118 @@
 #include <stdio.h>
 #include <string.h>
 
-CTEST(test_king, correct_horiz_move)
+CTEST(test_pawn, correct_move1)
 {
     int i, exp_ret = 1, res_ret;
     char exp[8][9], res[8][9];
     board(res);
     board(exp);
 
-    res[4][3] = 'K';
-    exp[3][3] = 'K';
-    res_ret = move_king('K', "d4-d5", res);
-
-    for (i = 0; i < 8; i++)
-        ASSERT_STR(exp[i], res[i]);
-    ASSERT_EQUAL(exp_ret, res_ret);
-
-    res[3][3] = 'K';
-    exp[3][3] = ' ';
-    exp[4][3] = 'K';
-    res_ret = move_king('K', "d5-d4", res);
+    res[6][1] = 'P';
+    exp[6][1] = ' ';
+    exp[5][1] = 'P';
+    res_ret = move_pawn('P', "b2-b3", res);
 
     for (i = 0; i < 8; i++)
         ASSERT_STR(exp[i], res[i]);
     ASSERT_EQUAL(exp_ret, res_ret);
 }
 
-CTEST(test_king, correct_vert_move)
+CTEST(test_pawn, correct_move2)
 {
     int i, exp_ret = 1, res_ret;
     char exp[8][9], res[8][9];
     board(res);
     board(exp);
 
-    res[4][3] = 'K';
-    exp[4][4] = 'K';
-    res_ret = move_king('K', "d4-e4", res);
-    for (i = 0; i < 8; i++)
-        ASSERT_STR(exp[i], res[i]);
-    ASSERT_EQUAL(exp_ret, res_ret);
-
-    res[4][4] = 'K';
-    exp[4][4] = ' ';
-    exp[4][3] = 'K';
-    res_ret = move_king('K', "e4-d4", res);
+    res[6][1] = 'P';
+    exp[6][1] = ' ';
+    exp[4][1] = 'P';
+    res_ret = move_pawn('P', "b2-b4", res);
 
     for (i = 0; i < 8; i++)
         ASSERT_STR(exp[i], res[i]);
     ASSERT_EQUAL(exp_ret, res_ret);
 }
 
-CTEST(test_king, incorrect_move)
+CTEST(test_pawn, incorrect_move)
 {
     int i, exp_ret = 0, res_ret;
     char exp[8][9], res[8][9];
     board(res);
     board(exp);
 
-    res[4][3] = 'K';
-    exp[4][3] = 'K';
-    res_ret = move_king('K', "d4-d6", res);
+    res[4][1] = 'P';
+    exp[4][1] = 'P';
+    res_ret = move_pawn('P', "b4-b3", res);
+
+    for (i = 0; i < 8; i++)
+        ASSERT_STR(exp[i], res[i]);
+    ASSERT_EQUAL(exp_ret, res_ret);
+
+    res[4][1] = 'P';
+    exp[4][1] = 'P';
+    res_ret = move_pawn('P', "b4-c5", res);
 
     for (i = 0; i < 8; i++)
         ASSERT_STR(exp[i], res[i]);
     ASSERT_EQUAL(exp_ret, res_ret);
 }
 
-CTEST(test_king, correct_hit)
+CTEST(test_pawn, incorrect_move2)
+{
+    int i, exp_ret = 0, res_ret;
+    char exp[8][9], res[8][9];
+    board(res);
+    board(exp);
+
+    res[5][1] = 'P';
+    exp[5][1] = 'P';
+    res_ret = move_pawn('P', "b3-b5", res);
+
+    for (i = 0; i < 8; i++)
+        ASSERT_STR(exp[i], res[i]);
+    ASSERT_EQUAL(exp_ret, res_ret);
+}
+
+CTEST(test_pawn, correct_hit)
 {
     int i, exp_ret = 1, res_ret;
     char exp[8][9], res[8][9];
     board(res);
     board(exp);
 
-    res[2][3] = 'K';
-    exp[1][3] = 'K';
-    res_ret = move_king('K', "d6xd7", res);
+    res[6][1] = 'P';
+    res[5][2] = 'b';
+    exp[6][1] = ' ';
+    exp[5][2] = 'P';
+    res_ret = move_pawn('P', "b2xc3", res);
 
     for (i = 0; i < 8; i++)
         ASSERT_STR(exp[i], res[i]);
     ASSERT_EQUAL(exp_ret, res_ret);
 }
 
-CTEST(test_king, incorrect_hit)
+CTEST(test_pawn, incorrect_hit)
 {
     int i, exp_ret = 0, res_ret;
     char exp[8][9], res[8][9];
     board(res);
     board(exp);
 
-    res[3][3] = 'K';
-    exp[3][3] = 'K';
-    res_ret = move_king('K', "d5xd7", res);
+    res[4][1] = 'P';
+    res[3][1] = 'b';
+    res[5][2] = 'b';
+    exp[4][1] = 'P';
+    exp[3][1] = 'b';
+    exp[5][2] = 'b';
+    res_ret = move_pawn('P', "b2xb5", res);
 
     for (i = 0; i < 8; i++)
         ASSERT_STR(exp[i], res[i]);
     ASSERT_EQUAL(exp_ret, res_ret);
-}
 
-CTEST(test_king, incorrect_act_move_hit)
-{
-    int i, exp_ret = 0, res_ret;
-    char exp[8][9], res[8][9];
-    board(res);
-    board(exp);
-
-    res[4][3] = 'K';
-
-    exp[4][3] = 'K';
-    res_ret = move_king('K', "d4xd5", res);
-
-    for (i = 0; i < 8; i++)
-        ASSERT_STR(exp[i], res[i]);
-    ASSERT_EQUAL(exp_ret, res_ret);
-}
-
-CTEST(test_king, incorrect_act_hit_move)
-{
-    int i, exp_ret = 0, res_ret;
-    char exp[8][9], res[8][9];
-    board(res);
-    board(exp);
-
-    res[2][3] = 'K';
-    exp[2][3] = 'K';
-    res_ret = move_king('K', "d6-d7", res);
+    res_ret = move_pawn('P', "b2xc1", res);
 
     for (i = 0; i < 8; i++)
         ASSERT_STR(exp[i], res[i]);

@@ -40,7 +40,8 @@ int main(int argc, char* argv[])
             return 0;
         }
         // printf("\nПроверка входных данных прошла успешно\n");
-        Move(s, table, i);
+        if (Move(s, table, i) == 0)
+            return 0;
         i++;
     }
 

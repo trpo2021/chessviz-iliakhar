@@ -62,8 +62,9 @@ int move_pawn(char fig, char s[], char table[8][9])
     }
 
     if (s[2] == '-') {
-        if (!(dy == forward
-              || ((cord.y1 == 1 || cord.y1 == 6) && dy == 2 * forward)))
+        if (!((dy == forward
+               || ((cord.y1 == 1 || cord.y1 == 6) && dy == 2 * forward))
+              && dx == 0))
             bl = 0;
     }
     if (s[2] == 'x') {

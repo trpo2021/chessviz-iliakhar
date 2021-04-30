@@ -63,5 +63,6 @@ clean:
 	rm -rf $(TEST_OBJ)/*.d
 	rm -rf $(LIBCHESSVIZ_OBJ)/*.a
 	rm -rf $(CHESSVIZ_BIN)/chessviz
+	rm -rf $(CHESSVIZ_BIN)/chessviz_test
 -include $(patsubst $(LIBCHESSVIZ_SCR)/%.c, $(LIBCHESSVIZ_OBJ)/%.d, $(wildcard $(LIBCHESSVIZ_SCR)/*.c))
 -include $(patsubst $(TEST)/%.c, $(TEST_OBJ)/%.d, $(wildcard $(TEST)/*.c))
