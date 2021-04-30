@@ -36,8 +36,8 @@ $(LIBCHESSVIZ_OBJ)/libchessviz.a : $(LIBCHESSVIZ_OBJ_FILE)
 	
 .PHONY: format
 format:
-	#echo $(wildcard $(LIBCHESSVIZ_SCR)/*.c)
 	clang-format -style=file -i $(wildcard $(LIBCHESSVIZ_SCR)/*.c) $(wildcard $(CHESSVIZ_SCR)/*.c) $(wildcard $(TEST)/*.c)
+	clang-format -style=file -i $(wildcard $(LIBCHESSVIZ_SCR)/*.h) $(wildcard $(TEST)/*.c)
 #####################################____TEST___#####################################
 .PHONY: testrun
 testrun: test
