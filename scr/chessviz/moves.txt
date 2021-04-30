@@ -1,3 +1,3 @@
-e2-e4 e7-e5
-Ke1-e2 bf8-f7
-d2-d3 f7-f6
+d2-d4 nb8-c6
+Bc1-e3 ra8-b8
+Be3-b6 h7-h6

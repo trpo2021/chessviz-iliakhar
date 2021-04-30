@@ -2,4 +2,4 @@
 *.exe
 *.a
 *.d
-bin/chessviz
+bin/*

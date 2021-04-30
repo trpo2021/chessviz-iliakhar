@@ -90,7 +90,7 @@ int proverka_formata_hod(char m[8], int player)
     return 1;
 }
 
-int proverka_formata(char table[8][8], char s[20])
+int proverka_formata(char table[8][9], char s[20])
 {
     //функция проверяет есть ли в s ' ', и если он есть делит строку на две
     //части:
