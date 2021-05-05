@@ -17,8 +17,14 @@ LIBCHESSVIZ_SCR = scr/libchessviz
 LIBCHESSVIZ_OBJ_FILE = $(patsubst $(LIBCHESSVIZ_SCR)/%.c, $(LIBCHESSVIZ_OBJ)/%.o, $(wildcard $(LIBCHESSVIZ_SCR)/*.c))
 TEST_OBJ_FILE = $(patsubst $(TEST)/%.c, $(TEST_OBJ)/%.o, $(wildcard $(TEST)/*.c))
 
+
+	
 .PHONY: all
-all:$(CHESSVIZ_BIN)/chessviz
+all:$(CHESSVIZ_OBJ)/chess.o $(LIBCHESSVIZ_OBJ)/libchessviz.a
+	$(CC) $(CFLAGS) $^ -o $(CHESSVIZ_BIN)/chessviz
+
+.PHONY: run
+run:$(CHESSVIZ_BIN)/chessviz
 	./$< scr/chessviz/moves.txt
 
 $(CHESSVIZ_BIN)/chessviz:$(CHESSVIZ_OBJ)/chess.o $(LIBCHESSVIZ_OBJ)/libchessviz.a

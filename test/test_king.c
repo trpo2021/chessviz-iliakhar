@@ -103,7 +103,7 @@ CTEST(test_king, incorrect_hit)
 
 CTEST(test_king, incorrect_act_move_hit)
 {
-    int i, exp_ret = 0, res_ret;
+    int i, exp_ret = 2, res_ret;
     char exp[8][9], res[8][9];
     board(res);
     board(exp);
@@ -120,7 +120,7 @@ CTEST(test_king, incorrect_act_move_hit)
 
 CTEST(test_king, incorrect_act_hit_move)
 {
-    int i, exp_ret = 0, res_ret;
+    int i, exp_ret = 2, res_ret;
     char exp[8][9], res[8][9];
     board(res);
     board(exp);

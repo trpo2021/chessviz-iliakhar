@@ -6,7 +6,7 @@
 
 CTEST(friendly_fire, knig)
 {
-    int i, exp_ret = 0, res_ret;
+    int i, exp_ret = 2, res_ret;
     char exp[8][9], res[8][9];
     board(res);
     board(exp);

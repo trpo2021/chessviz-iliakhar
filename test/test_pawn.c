@@ -98,7 +98,7 @@ CTEST(test_pawn, correct_hit)
 
 CTEST(test_pawn, incorrect_hit)
 {
-    int i, exp_ret = 0, res_ret;
+    int i, exp_ret, res_ret;
     char exp[8][9], res[8][9];
     board(res);
     board(exp);
@@ -109,12 +109,14 @@ CTEST(test_pawn, incorrect_hit)
     exp[4][1] = 'P';
     exp[3][1] = 'b';
     exp[5][2] = 'b';
+    exp_ret = 0;
     res_ret = move_pawn('P', "b2xb5", res);
 
     for (i = 0; i < 8; i++)
         ASSERT_STR(exp[i], res[i]);
     ASSERT_EQUAL(exp_ret, res_ret);
 
+    exp_ret = 2;
     res_ret = move_pawn('P', "b2xc1", res);
 
     for (i = 0; i < 8; i++)
