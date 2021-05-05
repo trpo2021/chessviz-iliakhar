@@ -18,7 +18,7 @@ int Move(char s[], char table[8][9], int k)
 {
     // printf("%s\n",s);
     char s1[10] = "\0", s2[10] = "\0", fig;
-    int i, beg = 0;
+    int i, beg = 0, ret;
     for (i = 0; i < 2; i++, beg += 7) {
         printf("\n%c.%s\n", k + '0', strncpy(s1, s + beg, 6));
         s1[6] = '\0';
@@ -33,32 +33,77 @@ int Move(char s[], char table[8][9], int k)
         switch (fig) {
         case 'k':
         case 'K':
-            if (move_king(fig, strcpy(s2, s2 + 1), table) == 0)
+            ret = move_king(fig, strcpy(s2, s2 + 1), table);
+            if (ret == 0) {
+                printf("Ход невозможен\n");
                 return 0;
+            }
+            if (ret == 2) {
+                printf("Неверное действие\n");
+                return 0;
+            }
             break;
         case 'p':
         case 'P':
-            if (move_pawn(fig, strcpy(s2, s2 + 1), table) == 0)
+            // printf("############ %d ##############",move_pawn(fig, strcpy(s2,
+            // s2 + 1), table));
+            ret = move_pawn(fig, strcpy(s2, s2 + 1), table);
+            if (ret == 0) {
+                printf("Ход невозможен\n");
                 return 0;
+            }
+            if (ret == 2) {
+                printf("Неверное действие\n");
+                return 0;
+            }
             break;
         case 'r':
         case 'R':
-            if (move_rook(fig, strcpy(s2, s2 + 1), table) == 0)
+            ret = move_rook(fig, strcpy(s2, s2 + 1), table);
+            if (ret == 0) {
+                printf("Ход невозможен\n");
                 return 0;
+            }
+            if (ret == 2) {
+                printf("Неверное действие\n");
+                return 0;
+            }
             break;
         case 'b':
         case 'B':
-            if (move_bishop(fig, strcpy(s2, s2 + 1), table) == 0)
+            ret = move_bishop(fig, strcpy(s2, s2 + 1), table);
+            if (ret == 0) {
+                printf("Ход невозможен\n");
                 return 0;
+            }
+            if (ret == 2) {
+                printf("Неверное действие\n");
+                return 0;
+            }
             break;
         case 'q':
         case 'Q':
-            if (move_queen(fig, strcpy(s2, s2 + 1), table) == 0)
+            ret = move_queen(fig, strcpy(s2, s2 + 1), table);
+            if (ret == 0) {
+                printf("Ход невозможен\n");
                 return 0;
+            }
+            if (ret == 2) {
+                printf("Неверное действие\n");
+                return 0;
+            }
+            break;
         case 'n':
         case 'N':
-            if (move_knight(fig, strcpy(s2, s2 + 1), table) == 0)
+            ret = move_knight(fig, strcpy(s2, s2 + 1), table);
+            if (ret == 0) {
+                printf("Ход невозможен\n");
                 return 0;
+            }
+            if (ret == 2) {
+                printf("Неверное действие\n");
+                return 0;
+            }
             break;
         default:
             break;

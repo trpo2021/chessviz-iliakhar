@@ -21,10 +21,8 @@ int move_king(char fig, char s[], char table[8][9])
     dx = cord.x2 - cord.x1;
     dy = cord.y2 - cord.y1;
 
-    if (check_act(fig, cord.x2, cord.y2, s, table) == 0) {
-        printf("\nНеверное действие\n");
-        return 0;
-    }
+    if (check_act(fig, cord.x2, cord.y2, s, table) == 0)
+        return 2;
 
     if (!(dx == 1 || dx == -1 || dx == 0))
         bl = 0;
@@ -35,10 +33,8 @@ int move_king(char fig, char s[], char table[8][9])
 
     if (bl == 1)
         mv(fig, cord, table);
-    else {
-        printf("Ход невозможен\n");
+    else
         return 0;
-    }
 
     return 1;
 }
@@ -56,10 +52,8 @@ int move_pawn(char fig, char s[], char table[8][9])
     else
         forward = -1;
 
-    if (check_act(fig, cord.x2, cord.y2, s, table) == 0) {
-        printf("\nНеверное действие\n");
-        return 0;
-    }
+    if (check_act(fig, cord.x2, cord.y2, s, table) == 0)
+        return 2;
 
     if (s[2] == '-') {
         if (!((dy == forward
@@ -74,10 +68,8 @@ int move_pawn(char fig, char s[], char table[8][9])
 
     if (bl == 1)
         mv(fig, cord, table);
-    else {
-        printf("Ход невозможен\n");
+    else
         return 0;
-    }
 
     return 1;
 }
@@ -96,10 +88,8 @@ int move_rook(char fig, char s[], char table[8][9])
         ymove = 1;
     if (dx < 0 || dy < 0)
         sig = -1;
-    if (check_act(fig, cord.x2, cord.y2, s, table) == 0) {
-        printf("\nНеверное действие\n");
-        return 0;
-    }
+    if (check_act(fig, cord.x2, cord.y2, s, table) == 0)
+        return 2;
 
     if (!((dx == 0 || dy == 0) && dx != dy))
         bl = 0;
@@ -115,10 +105,8 @@ int move_rook(char fig, char s[], char table[8][9])
     }
     if (bl == 1)
         mv(fig, cord, table);
-    else {
-        printf("Ход невозможен\n");
+    else
         return 0;
-    }
     return 1;
 }
 
@@ -135,10 +123,8 @@ int move_bishop(char fig, char s[], char table[8][9])
         xsig = -1;
     if (dy < 0)
         ysig = -1;
-    if (check_act(fig, cord.x2, cord.y2, s, table) == 0) {
-        printf("\nНеверное действие\n");
-        return 0;
-    }
+    if (check_act(fig, cord.x2, cord.y2, s, table) == 0)
+        return 2;
 
     if (!(abs(dx) == abs(dy) && dx != 0)) {
         bl = 0;
@@ -151,10 +137,8 @@ int move_bishop(char fig, char s[], char table[8][9])
     }
     if (bl == 1)
         mv(fig, cord, table);
-    else {
-        printf("Ход невозможен\n");
+    else
         return 0;
-    }
     return 1;
 }
 
@@ -178,10 +162,8 @@ int move_queen(char fig, char s[], char table[8][9])
         xsig = -1;
     if (dy < 0)
         ysig = -1;
-    if (check_act(fig, cord.x2, cord.y2, s, table) == 0) {
-        printf("\nНеверное действие\n");
-        return 0;
-    }
+    if (check_act(fig, cord.x2, cord.y2, s, table) == 0)
+        return 2;
 
     if (!((dx == 0 || dy == 0 || abs(dx) == abs(dy)) && (dx != 0 || dy != 0)))
         bl = 0;
@@ -199,10 +181,8 @@ int move_queen(char fig, char s[], char table[8][9])
     }
     if (bl == 1)
         mv(fig, cord, table);
-    else {
-        printf("Ход невозможен\n");
+    else
         return 0;
-    }
     return 1;
 }
 
@@ -214,19 +194,15 @@ int move_knight(char fig, char s[], char table[8][9])
     dx = cord.x2 - cord.x1;
     dy = cord.y2 - cord.y1;
 
-    if (check_act(fig, cord.x2, cord.y2, s, table) == 0) {
-        printf("\nНеверное действие\n");
-        return 0;
-    }
+    if (check_act(fig, cord.x2, cord.y2, s, table) == 0)
+        return 2;
 
     if (!((abs(dx) == 2 && abs(dy) == 1) || (abs(dx) == 1 && abs(dy) == 2)))
         bl = 0;
     if (bl == 1)
         mv(fig, cord, table);
-    else {
-        printf("Ход невозможен\n");
+    else
         return 0;
-    }
 
     return 1;
 }
